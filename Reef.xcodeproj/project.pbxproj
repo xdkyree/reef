@@ -1,0 +1,881 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		03A934A246A1A06C7E8C4314 /* MediaCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A827A94B90C03416E794CBF /* MediaCardView.swift */; };
+		0B1D13F6F0B416066FC5220F /* Spacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC58BA9EE26A759C07308B1F /* Spacing.swift */; };
+		0BE36B6158B9D75C06DC4D90 /* AudioTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4854BA22ACB2178E0A2AF92 /* AudioTrack.swift */; };
+		0E65E69EC42B7225F7DFF88F /* BlurredBackdropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D1333124D810170062CDAE /* BlurredBackdropView.swift */; };
+		1249DB3810904052AD264157 /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ACB503CE7B43A919537B01 /* LibraryView.swift */; };
+		1277D1A99CC06E8D9CD2176D /* JellyfinAPIClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6E896317A201D4877471D4 /* JellyfinAPIClientTests.swift */; };
+		1522C359332412CD3986DC5B /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF1921A8E167141B872F32E /* KeychainService.swift */; };
+		19FD2AEBD355D42B38FB3EBA /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A35B79DF19405BE06DC3232 /* Endpoints.swift */; };
+		2392BBC7AE73020CFF834AF0 /* ReefApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4262B97357102BF9818098 /* ReefApp.swift */; };
+		39022BE87CE9B4A7B91EAE56 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFC6F5FD3F3A1CAAA354A06 /* ImageCache.swift */; };
+		3E7F39BEF151F78F24A9D181 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5F21413B57ACA7DF3676B050 /* Localizable.strings */; };
+		4C49BD4E6E4405BA27706B91 /* AVPlayerEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC30EF15534A20DA56B94C5 /* AVPlayerEngine.swift */; };
+		52AF9B3EE11A6186C96995EC /* MockKeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559B5225EB5813979651BDF7 /* MockKeychainService.swift */; };
+		59DBF5002B10E713DE6A7FF7 /* AuthModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5618C2136941F11F07E9EA04 /* AuthModels.swift */; };
+		5FF90DBB32BE86AD858A38E3 /* UserLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCBA4DADCCCAF0E3D1C5BB1 /* UserLibrary.swift */; };
+		661200A4992C7236EF4F984C /* PlaybackInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713004DB4DCF21ACAEACC609 /* PlaybackInfo.swift */; };
+		6616D49F65CD76562762C457 /* MediaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652F90C4A508636207CDB450 /* MediaItem.swift */; };
+		6FF051870FD04FE3A7E746FB /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BA4BD2D824D37164A6E2F1 /* DetailViewModel.swift */; };
+		71F68B9F6808164AF6A23EA1 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB1551662160EBBED428A36 /* OnboardingViewModel.swift */; };
+		77BD08113BF7D928E02913C3 /* PlaybackReporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44108026E2981A687FD0505C /* PlaybackReporter.swift */; };
+		7C01411587029FBB5B94FC22 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306D0D5498EF5CD6D64D2272 /* VideoPlayerView.swift */; };
+		80424D6FB5A6C644399E4792 /* LibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAEAA58B2434956502CABD3 /* LibraryViewModel.swift */; };
+		8A6403278F088818F51E7326 /* PlaybackEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69EB34F249B7659097EEF4C4 /* PlaybackEngine.swift */; };
+		9219E5C1BABF70EEB3FF831F /* ImageCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF5D04D07910B2B056F8053 /* ImageCacheTests.swift */; };
+		9683AFB60DFEABD6116A4A34 /* PlaybackReporterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8FF041AC76F6980B946D70 /* PlaybackReporterTests.swift */; };
+		9C5EF261874FDAFC3C3A8A08 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4538A03149E16E76BBE1E37 /* OnboardingView.swift */; };
+		A7B7CE77E792AC50BB224511 /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0946D85D674B50C9D5085B1 /* AsyncImageView.swift */; };
+		AB36EC6F55EB58B626A26BA6 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42DEA9A85343C8C8CAD00D1 /* NetworkError.swift */; };
+		B3678E363E3D89956CB8B5AC /* GlassmorphicCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96D59761982DD8EAECD0CCD /* GlassmorphicCard.swift */; };
+		B44F0687E8883040EC2F536B /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012CC87E97FCE41528A7C2FE /* HTTPMethod.swift */; };
+		B5395C1BE8F9B9A2C498F8B6 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C257EF183BEFE1B5C321C7 /* AuthenticationService.swift */; };
+		B54D16D71A7B05A83D368B9B /* SubtitleTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEB82820DF351614C7E52F2 /* SubtitleTrack.swift */; };
+		B6C924F19D1A5B973AF5F2FA /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A53FA854B21DA3708FD448 /* DetailView.swift */; };
+		BB93E6A3D593AC5E6DBAB311 /* FocusScaleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8498B5A554505533594377E9 /* FocusScaleButton.swift */; };
+		BFEC612BA600837B55341B71 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7601EE91C6C7F4218ED01B97 /* ContentView.swift */; };
+		C22B6C866B10B33026153F0B /* MetadataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836898ACDD411F9AE1DEAF58 /* MetadataCache.swift */; };
+		C919020D2EC38A598C6F84B8 /* PlaybackRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0763DAF25A2AE6525F6995F7 /* PlaybackRouter.swift */; };
+		CCD1CDC34BEF928AF13F08EE /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE0C9B51E3741A56D925C8F /* HomeViewModel.swift */; };
+		CE5E28E31A4E4F033C743B7C /* Pods_ReefTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F51766F417EE5D12CB4C06B /* Pods_ReefTests.framework */; };
+		D203820F5518DDF82F467063 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A937724D58727CCBED0953 /* HomeView.swift */; };
+		D592742BB8097191137764BD /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70349BE1C26CE37D753C9FDA /* Animations.swift */; };
+		D5AC12028E003F5702E826EE /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02FF023615BAC0B8F1BE862F /* PlayerViewModel.swift */; };
+		D635D4575895DD1047EC7EDC /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A33AE5FB3B3FBE8AAB7A12 /* MockURLSession.swift */; };
+		DC4185C300B534DB88B91461 /* AuthenticationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C790874C1188D190CEE51CAA /* AuthenticationServiceTests.swift */; };
+		DD5503056BBD4D2AD310101B /* CarouselSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAB15E34CA812F775EA5200 /* CarouselSectionView.swift */; };
+		E0E372DE765D47AFB9503F81 /* JellyfinAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD9F1C816072B87FA26C488 /* JellyfinAPIClient.swift */; };
+		E3584DE2100050DA7DB2B7E0 /* PlaybackRouterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B60AEBDB2EB5960593E735D /* PlaybackRouterTests.swift */; };
+		E74236628D154D140EAA8EEC /* PlayerControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD994EA7A947EFC0DDC2C90 /* PlayerControlsView.swift */; };
+		E79945FE624EDDA156E6BDD6 /* Pods_Reef.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 249A6A49059AE1800B53077B /* Pods_Reef.framework */; };
+		F0071347292E04618AC103C5 /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F71EC50B54CA02505965BB /* Typography.swift */; };
+		F0B195E3AED433E984F34429 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9477AE6E349556A057AA31 /* Colors.swift */; };
+		F7250F4F45C8D96034B1502E /* VLCPlayerEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B068CD3318CADF28104FB8F5 /* VLCPlayerEngine.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7CA88C62E38C9D30431EE0CC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B117C27BD747E2170882ECBA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D7F066D58D043CAD0E116B49;
+			remoteInfo = Reef;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		012CC87E97FCE41528A7C2FE /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		02FF023615BAC0B8F1BE862F /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
+		0763DAF25A2AE6525F6995F7 /* PlaybackRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackRouter.swift; sourceTree = "<group>"; };
+		0EEB82820DF351614C7E52F2 /* SubtitleTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubtitleTrack.swift; sourceTree = "<group>"; };
+		249A6A49059AE1800B53077B /* Pods_Reef.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reef.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		24A937724D58727CCBED0953 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		24D1333124D810170062CDAE /* BlurredBackdropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurredBackdropView.swift; sourceTree = "<group>"; };
+		2A35B79DF19405BE06DC3232 /* Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
+		2AD9F1C816072B87FA26C488 /* JellyfinAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JellyfinAPIClient.swift; sourceTree = "<group>"; };
+		2EF20ABAA5C0B35B3EFAF235 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		2FEBC9D0D9B06F74E3F564A1 /* Reef.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Reef.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		306D0D5498EF5CD6D64D2272 /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
+		3B60AEBDB2EB5960593E735D /* PlaybackRouterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackRouterTests.swift; sourceTree = "<group>"; };
+		44108026E2981A687FD0505C /* PlaybackReporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackReporter.swift; sourceTree = "<group>"; };
+		47A33AE5FB3B3FBE8AAB7A12 /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
+		4CAB15E34CA812F775EA5200 /* CarouselSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselSectionView.swift; sourceTree = "<group>"; };
+		4CCBA4DADCCCAF0E3D1C5BB1 /* UserLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLibrary.swift; sourceTree = "<group>"; };
+		4D6E896317A201D4877471D4 /* JellyfinAPIClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JellyfinAPIClientTests.swift; sourceTree = "<group>"; };
+		52ACB503CE7B43A919537B01 /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
+		559B5225EB5813979651BDF7 /* MockKeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockKeychainService.swift; sourceTree = "<group>"; };
+		5618C2136941F11F07E9EA04 /* AuthModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModels.swift; sourceTree = "<group>"; };
+		5ED542BDD829F24E8F01C42C /* Pods-ReefTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReefTests.release.xcconfig"; path = "Target Support Files/Pods-ReefTests/Pods-ReefTests.release.xcconfig"; sourceTree = "<group>"; };
+		5F21413B57ACA7DF3676B050 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		652F90C4A508636207CDB450 /* MediaItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaItem.swift; sourceTree = "<group>"; };
+		69EB34F249B7659097EEF4C4 /* PlaybackEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackEngine.swift; sourceTree = "<group>"; };
+		6FF1921A8E167141B872F32E /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
+		70349BE1C26CE37D753C9FDA /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
+		713004DB4DCF21ACAEACC609 /* PlaybackInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackInfo.swift; sourceTree = "<group>"; };
+		7601EE91C6C7F4218ED01B97 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		79C257EF183BEFE1B5C321C7 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
+		7A827A94B90C03416E794CBF /* MediaCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaCardView.swift; sourceTree = "<group>"; };
+		7DF5D04D07910B2B056F8053 /* ImageCacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheTests.swift; sourceTree = "<group>"; };
+		836898ACDD411F9AE1DEAF58 /* MetadataCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetadataCache.swift; sourceTree = "<group>"; };
+		8498B5A554505533594377E9 /* FocusScaleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusScaleButton.swift; sourceTree = "<group>"; };
+		8BC30EF15534A20DA56B94C5 /* AVPlayerEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerEngine.swift; sourceTree = "<group>"; };
+		8F51766F417EE5D12CB4C06B /* Pods_ReefTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReefTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D85B33BF0525D49227E474F /* Pods-ReefTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReefTests.debug.xcconfig"; path = "Target Support Files/Pods-ReefTests/Pods-ReefTests.debug.xcconfig"; sourceTree = "<group>"; };
+		9DFC6F5FD3F3A1CAAA354A06 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		A42DEA9A85343C8C8CAD00D1 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		A5F71EC50B54CA02505965BB /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
+		A96D59761982DD8EAECD0CCD /* GlassmorphicCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassmorphicCard.swift; sourceTree = "<group>"; };
+		AC4262B97357102BF9818098 /* ReefApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReefApp.swift; sourceTree = "<group>"; };
+		B068CD3318CADF28104FB8F5 /* VLCPlayerEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLCPlayerEngine.swift; sourceTree = "<group>"; };
+		B0946D85D674B50C9D5085B1 /* AsyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageView.swift; sourceTree = "<group>"; };
+		B4854BA22ACB2178E0A2AF92 /* AudioTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioTrack.swift; sourceTree = "<group>"; };
+		B4CB3C8813E6FA6023FBCA9A /* ReefTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = ReefTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6BA4BD2D824D37164A6E2F1 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		B7A53FA854B21DA3708FD448 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		BA1BC819CFB5A760867FBF28 /* Pods-Reef.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reef.release.xcconfig"; path = "Target Support Files/Pods-Reef/Pods-Reef.release.xcconfig"; sourceTree = "<group>"; };
+		BB9477AE6E349556A057AA31 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		BDE0C9B51E3741A56D925C8F /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		BFB1551662160EBBED428A36 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
+		C045FECEBEE95471F1F6A58B /* Reef.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Reef.entitlements; sourceTree = "<group>"; };
+		C4538A03149E16E76BBE1E37 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		C790874C1188D190CEE51CAA /* AuthenticationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationServiceTests.swift; sourceTree = "<group>"; };
+		CDAEAA58B2434956502CABD3 /* LibraryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewModel.swift; sourceTree = "<group>"; };
+		EB1FEE84B77B04E947F9ADA3 /* Pods-Reef.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reef.debug.xcconfig"; path = "Target Support Files/Pods-Reef/Pods-Reef.debug.xcconfig"; sourceTree = "<group>"; };
+		FC58BA9EE26A759C07308B1F /* Spacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacing.swift; sourceTree = "<group>"; };
+		FC8FF041AC76F6980B946D70 /* PlaybackReporterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackReporterTests.swift; sourceTree = "<group>"; };
+		FCD994EA7A947EFC0DDC2C90 /* PlayerControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerControlsView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5CFDBAF3748DCD9EA5C9C9E0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE5E28E31A4E4F033C743B7C /* Pods_ReefTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8CB7CB7900F5F2451F5EBEF5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E79945FE624EDDA156E6BDD6 /* Pods_Reef.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		00281AA49413399E4E4A4788 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				4CAB15E34CA812F775EA5200 /* CarouselSectionView.swift */,
+				24A937724D58727CCBED0953 /* HomeView.swift */,
+				BDE0C9B51E3741A56D925C8F /* HomeViewModel.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		0264F895973732AF12C0EC51 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				C4538A03149E16E76BBE1E37 /* OnboardingView.swift */,
+				BFB1551662160EBBED428A36 /* OnboardingViewModel.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		06C552EDB340299CB6DE9128 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EB1FEE84B77B04E947F9ADA3 /* Pods-Reef.debug.xcconfig */,
+				BA1BC819CFB5A760867FBF28 /* Pods-Reef.release.xcconfig */,
+				9D85B33BF0525D49227E474F /* Pods-ReefTests.debug.xcconfig */,
+				5ED542BDD829F24E8F01C42C /* Pods-ReefTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		145C4D08FE431A706B9C4741 /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				9DFC6F5FD3F3A1CAAA354A06 /* ImageCache.swift */,
+				836898ACDD411F9AE1DEAF58 /* MetadataCache.swift */,
+			);
+			path = Cache;
+			sourceTree = "<group>";
+		};
+		18C69EFE0AF9128BD3588C6A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2FEBC9D0D9B06F74E3F564A1 /* Reef.app */,
+				B4CB3C8813E6FA6023FBCA9A /* ReefTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1DB8238BC355EF00CBF2412B /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				6619E8913A8B77F4EE4A3A00 /* Auth */,
+				145C4D08FE431A706B9C4741 /* Cache */,
+				CEE5FCBDECBC6AA5E9F56604 /* Models */,
+				614788FCA8E0561E4C21F01D /* Networking */,
+				BD515B3C17B3AF8336567CFB /* Playback */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		23D468A08255BABF4EFEC47C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				249A6A49059AE1800B53077B /* Pods_Reef.framework */,
+				8F51766F417EE5D12CB4C06B /* Pods_ReefTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		55463F2ECB818C08BA63DCA2 /* ReefTests */ = {
+			isa = PBXGroup;
+			children = (
+				AC5520BFEA243B96FCC2B55C /* Core */,
+				D89798B3CC2661C4AAB13409 /* Helpers */,
+			);
+			path = ReefTests;
+			sourceTree = "<group>";
+		};
+		56CF047150A6924743CABC30 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				52ACB503CE7B43A919537B01 /* LibraryView.swift */,
+				CDAEAA58B2434956502CABD3 /* LibraryViewModel.swift */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		614788FCA8E0561E4C21F01D /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				2A35B79DF19405BE06DC3232 /* Endpoints.swift */,
+				012CC87E97FCE41528A7C2FE /* HTTPMethod.swift */,
+				2AD9F1C816072B87FA26C488 /* JellyfinAPIClient.swift */,
+				A42DEA9A85343C8C8CAD00D1 /* NetworkError.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		6619E8913A8B77F4EE4A3A00 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				79C257EF183BEFE1B5C321C7 /* AuthenticationService.swift */,
+				5618C2136941F11F07E9EA04 /* AuthModels.swift */,
+				6FF1921A8E167141B872F32E /* KeychainService.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		7262DF6D88DE3E4B21390AF9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2EF20ABAA5C0B35B3EFAF235 /* Info.plist */,
+				5F21413B57ACA7DF3676B050 /* Localizable.strings */,
+				C045FECEBEE95471F1F6A58B /* Reef.entitlements */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		9306668E32CDA3CAF9D1A26C /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				B0946D85D674B50C9D5085B1 /* AsyncImageView.swift */,
+				24D1333124D810170062CDAE /* BlurredBackdropView.swift */,
+				8498B5A554505533594377E9 /* FocusScaleButton.swift */,
+				A96D59761982DD8EAECD0CCD /* GlassmorphicCard.swift */,
+				7A827A94B90C03416E794CBF /* MediaCardView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		AC5520BFEA243B96FCC2B55C /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				C790874C1188D190CEE51CAA /* AuthenticationServiceTests.swift */,
+				7DF5D04D07910B2B056F8053 /* ImageCacheTests.swift */,
+				4D6E896317A201D4877471D4 /* JellyfinAPIClientTests.swift */,
+				FC8FF041AC76F6980B946D70 /* PlaybackReporterTests.swift */,
+				3B60AEBDB2EB5960593E735D /* PlaybackRouterTests.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		B4B6D708A185045B5B0F495D /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				B7A53FA854B21DA3708FD448 /* DetailView.swift */,
+				B6BA4BD2D824D37164A6E2F1 /* DetailViewModel.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		BD515B3C17B3AF8336567CFB /* Playback */ = {
+			isa = PBXGroup;
+			children = (
+				8BC30EF15534A20DA56B94C5 /* AVPlayerEngine.swift */,
+				69EB34F249B7659097EEF4C4 /* PlaybackEngine.swift */,
+				44108026E2981A687FD0505C /* PlaybackReporter.swift */,
+				0763DAF25A2AE6525F6995F7 /* PlaybackRouter.swift */,
+				B068CD3318CADF28104FB8F5 /* VLCPlayerEngine.swift */,
+			);
+			path = Playback;
+			sourceTree = "<group>";
+		};
+		BEDAB4842490428089487480 /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				FCD994EA7A947EFC0DDC2C90 /* PlayerControlsView.swift */,
+				02FF023615BAC0B8F1BE862F /* PlayerViewModel.swift */,
+				306D0D5498EF5CD6D64D2272 /* VideoPlayerView.swift */,
+			);
+			path = Player;
+			sourceTree = "<group>";
+		};
+		CD282D01C21A1CB2BA694890 /* Reef */ = {
+			isa = PBXGroup;
+			children = (
+				7601EE91C6C7F4218ED01B97 /* ContentView.swift */,
+				AC4262B97357102BF9818098 /* ReefApp.swift */,
+				9306668E32CDA3CAF9D1A26C /* Components */,
+				1DB8238BC355EF00CBF2412B /* Core */,
+				EE44FC3D0AC93CD97BBF4705 /* DesignSystem */,
+				EC0B5D8375CA32EAFD2508A9 /* Features */,
+				7262DF6D88DE3E4B21390AF9 /* Resources */,
+			);
+			path = Reef;
+			sourceTree = "<group>";
+		};
+		CEE5FCBDECBC6AA5E9F56604 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B4854BA22ACB2178E0A2AF92 /* AudioTrack.swift */,
+				652F90C4A508636207CDB450 /* MediaItem.swift */,
+				713004DB4DCF21ACAEACC609 /* PlaybackInfo.swift */,
+				0EEB82820DF351614C7E52F2 /* SubtitleTrack.swift */,
+				4CCBA4DADCCCAF0E3D1C5BB1 /* UserLibrary.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D89798B3CC2661C4AAB13409 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				559B5225EB5813979651BDF7 /* MockKeychainService.swift */,
+				47A33AE5FB3B3FBE8AAB7A12 /* MockURLSession.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		EC0B5D8375CA32EAFD2508A9 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				B4B6D708A185045B5B0F495D /* Detail */,
+				00281AA49413399E4E4A4788 /* Home */,
+				56CF047150A6924743CABC30 /* Library */,
+				0264F895973732AF12C0EC51 /* Onboarding */,
+				BEDAB4842490428089487480 /* Player */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		EE44FC3D0AC93CD97BBF4705 /* DesignSystem */ = {
+			isa = PBXGroup;
+			children = (
+				70349BE1C26CE37D753C9FDA /* Animations.swift */,
+				BB9477AE6E349556A057AA31 /* Colors.swift */,
+				FC58BA9EE26A759C07308B1F /* Spacing.swift */,
+				A5F71EC50B54CA02505965BB /* Typography.swift */,
+			);
+			path = DesignSystem;
+			sourceTree = "<group>";
+		};
+		F0F46F2D121C884BE5CD2C5E = {
+			isa = PBXGroup;
+			children = (
+				CD282D01C21A1CB2BA694890 /* Reef */,
+				55463F2ECB818C08BA63DCA2 /* ReefTests */,
+				18C69EFE0AF9128BD3588C6A /* Products */,
+				06C552EDB340299CB6DE9128 /* Pods */,
+				23D468A08255BABF4EFEC47C /* Frameworks */,
+			);
+			indentWidth = 4;
+			sourceTree = "<group>";
+			tabWidth = 4;
+			usesTabs = 0;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9EFC48BF91E3F48045244D88 /* ReefTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D219BFB81F3B8E591526D356 /* Build configuration list for PBXNativeTarget "ReefTests" */;
+			buildPhases = (
+				396EBDC15F31A0FFF92A3059 /* [CP] Check Pods Manifest.lock */,
+				8FB180D3D9B7B56FF82FF319 /* Sources */,
+				5CFDBAF3748DCD9EA5C9C9E0 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E1068954768629711D96E64F /* PBXTargetDependency */,
+			);
+			name = ReefTests;
+			productName = ReefTests;
+			productReference = B4CB3C8813E6FA6023FBCA9A /* ReefTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D7F066D58D043CAD0E116B49 /* Reef */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5F6D2A2F7961245FFCA5DBCF /* Build configuration list for PBXNativeTarget "Reef" */;
+			buildPhases = (
+				9D442FAA5F1CBA4878D8CEAA /* [CP] Check Pods Manifest.lock */,
+				B9529FCA52AD25F4F352A908 /* SwiftLint */,
+				6A8B1E5D177C954475EA3FB4 /* Sources */,
+				C4282BA9ED49CCF74800A819 /* Resources */,
+				8CB7CB7900F5F2451F5EBEF5 /* Frameworks */,
+				AA6001D2BBAD73AF750AFD26 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Reef;
+			productName = Reef;
+			productReference = 2FEBC9D0D9B06F74E3F564A1 /* Reef.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B117C27BD747E2170882ECBA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+				};
+			};
+			buildConfigurationList = 1D01D14121A81775924CE721 /* Build configuration list for PBXProject "Reef" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = F0F46F2D121C884BE5CD2C5E;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 18C69EFE0AF9128BD3588C6A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D7F066D58D043CAD0E116B49 /* Reef */,
+				9EFC48BF91E3F48045244D88 /* ReefTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C4282BA9ED49CCF74800A819 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E7F39BEF151F78F24A9D181 /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		396EBDC15F31A0FFF92A3059 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ReefTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9D442FAA5F1CBA4878D8CEAA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Reef-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AA6001D2BBAD73AF750AFD26 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Reef/Pods-Reef-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Reef/Pods-Reef-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Reef/Pods-Reef-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B9529FCA52AD25F4F352A908 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint > /dev/null; then\n  swiftlint lint --strict\nelse\n  echo \"warning: SwiftLint not installed. Run: brew install swiftlint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6A8B1E5D177C954475EA3FB4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C49BD4E6E4405BA27706B91 /* AVPlayerEngine.swift in Sources */,
+				D592742BB8097191137764BD /* Animations.swift in Sources */,
+				A7B7CE77E792AC50BB224511 /* AsyncImageView.swift in Sources */,
+				0BE36B6158B9D75C06DC4D90 /* AudioTrack.swift in Sources */,
+				59DBF5002B10E713DE6A7FF7 /* AuthModels.swift in Sources */,
+				B5395C1BE8F9B9A2C498F8B6 /* AuthenticationService.swift in Sources */,
+				0E65E69EC42B7225F7DFF88F /* BlurredBackdropView.swift in Sources */,
+				DD5503056BBD4D2AD310101B /* CarouselSectionView.swift in Sources */,
+				F0B195E3AED433E984F34429 /* Colors.swift in Sources */,
+				BFEC612BA600837B55341B71 /* ContentView.swift in Sources */,
+				B6C924F19D1A5B973AF5F2FA /* DetailView.swift in Sources */,
+				6FF051870FD04FE3A7E746FB /* DetailViewModel.swift in Sources */,
+				19FD2AEBD355D42B38FB3EBA /* Endpoints.swift in Sources */,
+				BB93E6A3D593AC5E6DBAB311 /* FocusScaleButton.swift in Sources */,
+				B3678E363E3D89956CB8B5AC /* GlassmorphicCard.swift in Sources */,
+				B44F0687E8883040EC2F536B /* HTTPMethod.swift in Sources */,
+				D203820F5518DDF82F467063 /* HomeView.swift in Sources */,
+				CCD1CDC34BEF928AF13F08EE /* HomeViewModel.swift in Sources */,
+				39022BE87CE9B4A7B91EAE56 /* ImageCache.swift in Sources */,
+				E0E372DE765D47AFB9503F81 /* JellyfinAPIClient.swift in Sources */,
+				1522C359332412CD3986DC5B /* KeychainService.swift in Sources */,
+				1249DB3810904052AD264157 /* LibraryView.swift in Sources */,
+				80424D6FB5A6C644399E4792 /* LibraryViewModel.swift in Sources */,
+				03A934A246A1A06C7E8C4314 /* MediaCardView.swift in Sources */,
+				6616D49F65CD76562762C457 /* MediaItem.swift in Sources */,
+				C22B6C866B10B33026153F0B /* MetadataCache.swift in Sources */,
+				AB36EC6F55EB58B626A26BA6 /* NetworkError.swift in Sources */,
+				9C5EF261874FDAFC3C3A8A08 /* OnboardingView.swift in Sources */,
+				71F68B9F6808164AF6A23EA1 /* OnboardingViewModel.swift in Sources */,
+				8A6403278F088818F51E7326 /* PlaybackEngine.swift in Sources */,
+				661200A4992C7236EF4F984C /* PlaybackInfo.swift in Sources */,
+				77BD08113BF7D928E02913C3 /* PlaybackReporter.swift in Sources */,
+				C919020D2EC38A598C6F84B8 /* PlaybackRouter.swift in Sources */,
+				E74236628D154D140EAA8EEC /* PlayerControlsView.swift in Sources */,
+				D5AC12028E003F5702E826EE /* PlayerViewModel.swift in Sources */,
+				2392BBC7AE73020CFF834AF0 /* ReefApp.swift in Sources */,
+				0B1D13F6F0B416066FC5220F /* Spacing.swift in Sources */,
+				B54D16D71A7B05A83D368B9B /* SubtitleTrack.swift in Sources */,
+				F0071347292E04618AC103C5 /* Typography.swift in Sources */,
+				5FF90DBB32BE86AD858A38E3 /* UserLibrary.swift in Sources */,
+				F7250F4F45C8D96034B1502E /* VLCPlayerEngine.swift in Sources */,
+				7C01411587029FBB5B94FC22 /* VideoPlayerView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8FB180D3D9B7B56FF82FF319 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC4185C300B534DB88B91461 /* AuthenticationServiceTests.swift in Sources */,
+				9219E5C1BABF70EEB3FF831F /* ImageCacheTests.swift in Sources */,
+				1277D1A99CC06E8D9CD2176D /* JellyfinAPIClientTests.swift in Sources */,
+				52AF9B3EE11A6186C96995EC /* MockKeychainService.swift in Sources */,
+				D635D4575895DD1047EC7EDC /* MockURLSession.swift in Sources */,
+				9683AFB60DFEABD6116A4A34 /* PlaybackReporterTests.swift in Sources */,
+				E3584DE2100050DA7DB2B7E0 /* PlaybackRouterTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E1068954768629711D96E64F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D7F066D58D043CAD0E116B49 /* Reef */;
+			targetProxy = 7CA88C62E38C9D30431EE0CC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		180C600DF9244D6A15808B6C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EB1FEE84B77B04E947F9ADA3 /* Pods-Reef.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = Reef/Resources/Reef.entitlements;
+				INFOPLIST_FILE = Reef/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.reef.app;
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 17.0;
+			};
+			name = Debug;
+		};
+		1BD7BEF1E89EDDE56CE4C087 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_UPCOMING_FEATURE_CONCISE_MAGIC_FILE = YES;
+				SWIFT_VERSION = 5.10;
+				TVOS_DEPLOYMENT_TARGET = 17.0;
+			};
+			name = Debug;
+		};
+		2F86F9DF4FC6D46CAC4D5011 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				OTHER_SWIFT_FLAGS = "-warnings-as-errors";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_UPCOMING_FEATURE_CONCISE_MAGIC_FILE = YES;
+				SWIFT_VERSION = 5.10;
+				TVOS_DEPLOYMENT_TARGET = 17.0;
+			};
+			name = Release;
+		};
+		8D2004559AB25E89FB6DEB2F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5ED542BDD829F24E8F01C42C /* Pods-ReefTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.reef.tests;
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Reef.app/Reef";
+				TVOS_DEPLOYMENT_TARGET = 17.0;
+			};
+			name = Release;
+		};
+		96F61E45FADBC445A5F8115B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BA1BC819CFB5A760867FBF28 /* Pods-Reef.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = Reef/Resources/Reef.entitlements;
+				INFOPLIST_FILE = Reef/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.reef.app;
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 17.0;
+			};
+			name = Release;
+		};
+		C1F08EFF52F53B7A4A282D82 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9D85B33BF0525D49227E474F /* Pods-ReefTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.reef.tests;
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Reef.app/Reef";
+				TVOS_DEPLOYMENT_TARGET = 17.0;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1D01D14121A81775924CE721 /* Build configuration list for PBXProject "Reef" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1BD7BEF1E89EDDE56CE4C087 /* Debug */,
+				2F86F9DF4FC6D46CAC4D5011 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		5F6D2A2F7961245FFCA5DBCF /* Build configuration list for PBXNativeTarget "Reef" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				180C600DF9244D6A15808B6C /* Debug */,
+				96F61E45FADBC445A5F8115B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D219BFB81F3B8E591526D356 /* Build configuration list for PBXNativeTarget "ReefTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C1F08EFF52F53B7A4A282D82 /* Debug */,
+				8D2004559AB25E89FB6DEB2F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B117C27BD747E2170882ECBA /* Project object */;
+}

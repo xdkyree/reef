@@ -1,0 +1,42 @@
+/* Reef — Localizable strings (English)
+   Add new strings here; keep keys in dot-notation groups.
+   Translations go in separate language .lproj directories (post-MVP). */
+
+// MARK: - Onboarding
+"onboarding.title" = "Connect to Jellyfin";
+"onboarding.field.serverURL" = "Server URL";
+"onboarding.field.username" = "Username";
+"onboarding.field.password" = "Password";
+"onboarding.button.connect" = "Connect";
+"onboarding.button.connecting" = "Connecting…";
+"onboarding.error.title" = "Connection Failed";
+"onboarding.error.emptyFields" = "Please fill in all fields.";
+
+// MARK: - Home
+"home.greeting.morning" = "Good morning";
+"home.greeting.afternoon" = "Good afternoon";
+"home.greeting.evening" = "Good evening";
+"home.carousel.continueWatching" = "Continue Watching";
+"home.carousel.nextUp" = "Next Up";
+"home.carousel.recentlyAddedMovies" = "Recently Added Movies";
+"home.carousel.recentlyAddedShows" = "Recently Added Shows";
+
+// MARK: - Library
+"library.empty" = "No items in %@";
+"library.loading" = "Loading library…";
+
+// MARK: - Detail
+"detail.button.play" = "Play";
+"detail.button.resume" = "Resume";
+"detail.button.trailer" = "Trailer";
+"detail.resume.title" = "Resume Playback";
+"detail.resume.from" = "Resume from %@";
+"detail.resume.startOver" = "Start Over";
+
+// MARK: - Player
+"player.loading" = "Loading…";
+
+// MARK: - Errors
+"error.noConnectivity" = "No network connection. Check your Wi-Fi or Ethernet.";
+"error.unauthorized" = "Session expired. Please sign in again.";
+"error.retry" = "Retry";

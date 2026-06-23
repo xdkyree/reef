@@ -1,0 +1,94 @@
+name: Reef
+options:
+  bundleIdPrefix: com.reef
+  deploymentTarget:
+    tvOS: "17.0"
+  xcodeVersion: "16.0"
+  generateEmptyDirectories: true
+  indentWidth: 4
+  tabWidth: 4
+  usesTabs: false
+
+settings:
+  base:
+    SWIFT_VERSION: "5.10"
+    MARKETING_VERSION: "1.0.0"
+    CURRENT_PROJECT_VERSION: "1"
+    TVOS_DEPLOYMENT_TARGET: "17.0"
+    SWIFT_STRICT_CONCURRENCY: complete
+    SWIFT_UPCOMING_FEATURE_CONCISE_MAGIC_FILE: YES
+    ENABLE_TESTABILITY: YES
+    DEBUG_INFORMATION_FORMAT: dwarf-with-dsym
+    OTHER_SWIFT_FLAGS: "-warnings-as-errors"
+  configs:
+    Debug:
+      OTHER_SWIFT_FLAGS: ""   # allow warnings during development
+    Release:
+      OTHER_SWIFT_FLAGS: "-warnings-as-errors"
+
+targets:
+  Reef:
+    type: application
+    platform: tvOS
+    deploymentTarget: "17.0"
+    sources:
+      - path: Reef
+        excludes:
+          - "**/.DS_Store"
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.reef.app
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        INFOPLIST_FILE: Reef/Resources/Info.plist
+    entitlements:
+      path: Reef/Resources/Reef.entitlements
+    preBuildScripts:
+      - name: SwiftLint
+        script: |
+          if which swiftlint > /dev/null; then
+            swiftlint lint --strict
+          else
+            echo "warning: SwiftLint not installed. Run: brew install swiftlint"
+          fi
+        basedOnDependencyAnalysis: false
+
+  ReefTests:
+    type: bundle.unit-test
+    platform: tvOS
+    deploymentTarget: "17.0"
+    sources:
+      - path: ReefTests
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.reef.tests
+        TEST_HOST: $(BUILT_PRODUCTS_DIR)/Reef.app/Reef
+        BUNDLE_LOADER: $(TEST_HOST)
+    dependencies:
+      - target: Reef
+
+schemes:
+  Reef:
+    build:
+      targets:
+        Reef: all
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets:
+        - name: ReefTests
+          parallelizable: true
+          randomExecutionOrder: true
+    archive:
+      config: Release
+
+  ReefTests:
+    build:
+      targets:
+        ReefTests: all
+    test:
+      config: Debug
+      targets:
+        - name: ReefTests
+          parallelizable: true
+          randomExecutionOrder: true

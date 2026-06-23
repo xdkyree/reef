@@ -1,0 +1,90 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  SCHEME: Reef
+  TEST_SCHEME: ReefTests
+  DESTINATION: "platform=tvOS Simulator,name=Apple TV 4K (3rd generation)"
+  CONFIGURATION: Debug
+
+jobs:
+  # ─── Job 1: SwiftLint ─────────────────────────────────────────────────────
+  lint:
+    name: SwiftLint
+    runs-on: macos-15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install SwiftLint
+        run: brew install swiftlint
+
+      - name: Run SwiftLint (strict)
+        run: swiftlint lint --strict
+
+  # ─── Job 2: Build + Test ──────────────────────────────────────────────────
+  build-and-test:
+    name: Build & Test (tvOS Simulator)
+    runs-on: macos-15
+    needs: lint
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Select Xcode 16
+        run: sudo xcode-select --switch /Applications/Xcode_16.app/Contents/Developer
+
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Generate Xcode project
+        run: xcodegen generate
+
+      # Cache Pods between runs — key on Podfile.lock
+      - name: Cache CocoaPods
+        uses: actions/cache@v4
+        with:
+          path: Pods
+          key: pods-${{ runner.os }}-${{ hashFiles('Podfile.lock') }}
+          restore-keys: pods-${{ runner.os }}-
+
+      - name: Install CocoaPods
+        run: pod install --repo-update
+
+      - name: Build
+        run: |
+          xcodebuild \
+            -workspace Reef.xcworkspace \
+            -scheme ${{ env.SCHEME }} \
+            -sdk appletvsimulator \
+            -destination "${{ env.DESTINATION }}" \
+            -configuration ${{ env.CONFIGURATION }} \
+            build \
+            | xcpretty --color && exit ${PIPESTATUS[0]}
+
+      - name: Test
+        run: |
+          xcodebuild \
+            -workspace Reef.xcworkspace \
+            -scheme ${{ env.TEST_SCHEME }} \
+            -sdk appletvsimulator \
+            -destination "${{ env.DESTINATION }}" \
+            test \
+            | xcpretty --color && exit ${PIPESTATUS[0]}
+
+      - name: Upload test results
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: |
+            ~/Library/Developer/Xcode/DerivedData/**/Logs/Test/*.xcresult
