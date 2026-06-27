@@ -200,3 +200,70 @@ private extension MockKeychainService {
         self.preloadedCredentials = preloadedCredentials
     }
 }
+
+// MARK: - OnboardingViewModelTests
+
+@MainActor
+final class OnboardingViewModelTests: XCTestCase {
+
+    func test_connect_showsValidationError_whenFieldsAreMissing() async {
+        let viewModel = OnboardingViewModel(
+            connectAction: { _, _, _ in
+                XCTFail("Connect action should not run for invalid input.")
+                throw AuthenticationError.invalidServerURL
+            },
+            onSuccess: { _ in }
+        )
+
+        await viewModel.connect()
+
+        XCTAssertEqual(viewModel.errorMessage, "Please fill in all fields.")
+        XCTAssertFalse(viewModel.didConnect)
+    }
+
+    func test_connect_normalizesServerURL_beforeLogin() async {
+        var capturedURL: URL?
+        let viewModel = OnboardingViewModel(
+            connectAction: { serverURL, _, _ in
+                capturedURL = serverURL
+                return UserSession(
+                    userID: "user-1",
+                    userName: "Alice",
+                    accessToken: "token",
+                    serverId: "server-1",
+                    serverURL: serverURL
+                )
+            },
+            onSuccess: { _ in }
+        )
+        viewModel.serverURLText = " jellyfin.lan:8096/ "
+        viewModel.username = "Alice"
+        viewModel.password = "secret"
+
+        await viewModel.connect()
+
+        XCTAssertEqual(capturedURL?.absoluteString, "http://jellyfin.lan:8096")
+        XCTAssertNil(viewModel.errorMessage)
+        XCTAssertTrue(viewModel.didConnect)
+    }
+
+    func test_connect_surfacesAuthenticationError_message() async {
+        let viewModel = OnboardingViewModel(
+            connectAction: { _, _, _ in
+                throw AuthenticationError.loginFailed("Invalid username or password.")
+            },
+            onSuccess: { _ in }
+        )
+        viewModel.serverURLText = "http://jellyfin.lan:8096"
+        viewModel.username = "Alice"
+        viewModel.password = "wrong"
+
+        await viewModel.connect()
+
+        XCTAssertEqual(
+            viewModel.errorMessage,
+            "Login failed: Invalid username or password."
+        )
+        XCTAssertFalse(viewModel.didConnect)
+    }
+}

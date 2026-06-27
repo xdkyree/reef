@@ -100,7 +100,7 @@ extension VLCPlayerEngine: VLCMediaPlayerDelegate {
             case .playing:   self.state = .playing
             case .paused:    self.state = .paused
             case .buffering: self.state = .buffering
-            case .stopped, .stopping:  self.state = .idle
+            case .stopped:   self.state = .idle
             case .error:     self.state = .failed("VLC playback error")
             case .esAdded:   self.state = .readyToPlay
             default:         break

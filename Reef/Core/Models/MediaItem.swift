@@ -83,6 +83,7 @@ public struct MediaItem: Codable, Identifiable, Sendable {
     public let indexNumber: Int?                 // Episode number
     public let parentIndexNumber: Int?           // Season number
     public let seriesId: String?
+    public let collectionType: LibraryType?
 
     // MARK: Image tags
     public let primaryImageTag: String?
@@ -113,6 +114,7 @@ public struct MediaItem: Codable, Identifiable, Sendable {
         case indexNumber        = "IndexNumber"
         case parentIndexNumber  = "ParentIndexNumber"
         case seriesId           = "SeriesId"
+        case collectionType     = "CollectionType"
         case primaryImageTag    = "PrimaryImageTag"
         case backdropImageTags  = "BackdropImageTags"
         case thumbImageTag      = "ThumbImageTag"

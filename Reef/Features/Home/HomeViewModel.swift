@@ -4,6 +4,11 @@ import SwiftUI
 
 @MainActor
 final class HomeViewModel: ObservableObject {
+    struct Section: Identifiable {
+        let id: String
+        let title: String
+        let items: [MediaItem]
+    }
 
     // MARK: Published state
     @Published private(set) var continueWatching: [MediaItem] = []
@@ -51,5 +56,15 @@ final class HomeViewModel: ObservableObject {
 
     func refresh(userID: String, token: String) async {
         await loadDashboard(userID: userID, token: token)
+    }
+
+    var sections: [Section] {
+        [
+            Section(id: "continue", title: "Continue Watching", items: continueWatching),
+            Section(id: "next-up", title: "Next Up", items: nextUp),
+            Section(id: "movies", title: "Recently Added Movies", items: recentlyAddedMovies),
+            Section(id: "shows", title: "Recently Added Shows", items: recentlyAddedShows)
+        ]
+        .filter { !$0.items.isEmpty }
     }
 }

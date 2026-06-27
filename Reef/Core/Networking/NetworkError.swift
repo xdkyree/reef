@@ -19,6 +19,9 @@ public enum NetworkError: Error, Equatable {
     /// The request timed out.
     case timeout
 
+    /// The server address could not be reached on the network.
+    case cannotReachServer
+
     // MARK: Data
 
     /// The response body could not be decoded into the expected type.
@@ -52,6 +55,10 @@ extension NetworkError: LocalizedError {
             return "No network connection. Check your Wi-Fi or Ethernet."
         case .timeout:
             return "The request timed out. Your server may be unreachable."
+        case .cannotReachServer:
+            return """
+            Couldn't reach that server. Check the address, port, and that Jellyfin is available on this network.
+            """
         case .decodingFailed(let detail):
             return "Unexpected server response: \(detail)"
         case .emptyResponse:

@@ -16,7 +16,12 @@ public struct PlaybackInfo: Decodable, Sendable {
     /// Returns the best media source to use — prefers direct play,
     /// falls back to the first available transcode source.
     public var preferredSource: MediaSource? {
-        mediaSources.first { $0.supportsDirectPlay } ?? mediaSources.first
+        mediaSources.first { source in
+            source.directStreamUrl != nil || source.transcodingUrl != nil
+        } ?? mediaSources.first { $0.supportsDirectPlay } ??
+        mediaSources.first { $0.supportsDirectStream } ??
+        mediaSources.first { $0.supportsTranscoding } ??
+        mediaSources.first
     }
 }
 

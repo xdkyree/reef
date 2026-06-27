@@ -33,6 +33,7 @@ public protocol JellyfinAPIClientProtocol: Sendable {
     func fetchLibraryItems(
         userID: String,
         parentID: String,
+        libraryType: LibraryType,
         token: String,
         startIndex: Int,
         limit: Int
@@ -214,15 +215,17 @@ public actor JellyfinAPIClient: JellyfinAPIClientProtocol {
         )
         request.url = request.url?.appending(queryItems: [
             URLQueryItem(name: "IncludeItemTypes", value: "CollectionFolder"),
-            URLQueryItem(name: "Fields", value: "PrimaryImageAspectRatio")
+            URLQueryItem(name: "Fields", value: "PrimaryImageAspectRatio,CollectionType")
         ])
         let response = try await perform(request, decoding: JellyfinItemsResponse.self)
+        logger.debug("Loaded \(response.items.count) libraries for user \(userID)")
         return response.items.compactMap { UserLibrary(mediaItem: $0) }
     }
 
     public func fetchLibraryItems(
         userID: String,
         parentID: String,
+        libraryType: LibraryType,
         token: String,
         startIndex: Int = 0,
         limit: Int = 50
@@ -239,13 +242,21 @@ public actor JellyfinAPIClient: JellyfinAPIClientProtocol {
             URLQueryItem(name: "Recursive", value: "true"),
             URLQueryItem(name: "SortBy", value: "SortName"),
             URLQueryItem(name: "SortOrder", value: "Ascending"),
-            URLQueryItem(name: "IncludeItemTypes", value: "Movie,Series"),
-            URLQueryItem(name: "Fields", value: "Overview,RunTimeTicks,UserData,PrimaryImageAspectRatio"),
+            URLQueryItem(name: "IncludeItemTypes", value: libraryType.topLevelIncludeItemTypes),
+            URLQueryItem(
+                name: "Fields",
+                value: "Overview,RunTimeTicks,UserData,PrimaryImageAspectRatio," +
+                    "ProductionYear,OfficialRating,CommunityRating," +
+                    "BackdropImageTags,PrimaryImageTag,CollectionType"
+            ),
             URLQueryItem(name: "EnableImageTypes", value: "Primary,Backdrop")
         ])
         let response = try await perform(request, decoding: JellyfinItemsResponse.self)
+        let libraryKind = libraryType.rawValue
+        logger.debug("Loaded \(response.items.count) items for library \(parentID)")
+        logger.debug("Library type \(libraryKind), start \(startIndex), total \(response.totalRecordCount)")
         return PaginatedResult(
-            items: response.items,
+            items: response.items.filter { $0.type != .episode },
             totalCount: response.totalRecordCount,
             startIndex: startIndex
         )
@@ -387,6 +398,16 @@ public actor JellyfinAPIClient: JellyfinAPIClientProtocol {
                 let decoded = try JSONDecoder.jellyfinDecoder.decode(type, from: data)
                 logger.debug("← 200 \(String(describing: T.self))")
                 return decoded
+            } catch let decodingError as DecodingError {
+                if let object = try? JSONSerialization.jsonObject(with: data) as? [String: Any] {
+                    let keys = object.keys.sorted().joined(separator: ", ")
+                    logger.error("Auth decode received top-level keys: \(keys, privacy: .public)")
+                }
+                logger.error("""
+                    Decode error for \(String(describing: T.self), privacy: .public): \
+                    \(Self.describe(decodingError), privacy: .public)
+                    """)
+                throw NetworkError.decodingFailed(Self.describe(decodingError))
             } catch {
                 logger.error("Decode error: \(error)")
                 throw NetworkError.decodingFailed(error.localizedDescription)
@@ -394,6 +415,11 @@ public actor JellyfinAPIClient: JellyfinAPIClientProtocol {
         } catch let error as NetworkError {
             throw error
         } catch let urlError as URLError {
+            let requestURL = request.url?.absoluteString ?? ""
+            logger.error("""
+                URLSession failed with code \(urlError.code.rawValue, privacy: .public) \
+                for \(requestURL, privacy: .public)
+                """)
             throw mapURLError(urlError)
         } catch {
             throw NetworkError.unknown(error.localizedDescription)
@@ -408,6 +434,11 @@ public actor JellyfinAPIClient: JellyfinAPIClientProtocol {
         } catch let error as NetworkError {
             throw error
         } catch let urlError as URLError {
+            let requestURL = request.url?.absoluteString ?? ""
+            logger.error("""
+                URLSession failed with code \(urlError.code.rawValue, privacy: .public) \
+                for \(requestURL, privacy: .public)
+                """)
             throw mapURLError(urlError)
         } catch {
             throw NetworkError.unknown(error.localizedDescription)
@@ -437,11 +468,35 @@ public actor JellyfinAPIClient: JellyfinAPIClientProtocol {
         switch error.code {
         case .notConnectedToInternet, .networkConnectionLost:
             return .noConnectivity
+        case .cannotFindHost, .cannotConnectToHost, .dnsLookupFailed:
+            return .cannotReachServer
         case .timedOut:
             return .timeout
+        case .appTransportSecurityRequiresSecureConnection:
+            return .cannotReachServer
         default:
             return .unknown(error.localizedDescription)
         }
+    }
+
+    private static func describe(_ error: DecodingError) -> String {
+        switch error {
+        case .typeMismatch(let type, let context):
+            return "Type mismatch for \(type) at \(codingPath(context.codingPath)): \(context.debugDescription)"
+        case .valueNotFound(let type, let context):
+            return "Missing value for \(type) at \(codingPath(context.codingPath)): \(context.debugDescription)"
+        case .keyNotFound(let key, let context):
+            return "Missing key \(key.stringValue) at \(codingPath(context.codingPath)): \(context.debugDescription)"
+        case .dataCorrupted(let context):
+            return "Corrupted data at \(codingPath(context.codingPath)): \(context.debugDescription)"
+        @unknown default:
+            return error.localizedDescription
+        }
+    }
+
+    private static func codingPath(_ path: [CodingKey]) -> String {
+        guard !path.isEmpty else { return "<root>" }
+        return path.map(\.stringValue).joined(separator: ".")
     }
 }
 
@@ -451,7 +506,6 @@ extension JSONDecoder {
     /// Shared decoder configured for Jellyfin's date format conventions.
     static let jellyfinDecoder: JSONDecoder = {
         let decoder = JSONDecoder()
-        decoder.keyDecodingStrategy = .convertFromPascalCase
         decoder.dateDecodingStrategy = .custom { decoder in
             let container = try decoder.singleValueContainer()
             let string = try container.decode(String.self)
@@ -493,10 +547,20 @@ struct JellyfinItemsResponse: Decodable {
     let items: [MediaItem]
     let totalRecordCount: Int
     let startIndex: Int
+
+    enum CodingKeys: String, CodingKey {
+        case items = "Items"
+        case totalRecordCount = "TotalRecordCount"
+        case startIndex = "StartIndex"
+    }
 }
 
 struct JellyfinErrorResponse: Decodable {
     let message: String?
+
+    enum CodingKeys: String, CodingKey {
+        case message = "Message"
+    }
 }
 
 struct PlaybackInfoRequest: Encodable {
@@ -531,11 +595,21 @@ public struct JellyfinUser: Decodable, Identifiable, Sendable {
     public let id: String
     public let name: String
     public let primaryImageTag: String?
+    public let serverId: String?
 
     enum CodingKeys: String, CodingKey {
         case id = "Id"
         case name = "Name"
         case primaryImageTag = "PrimaryImageTag"
+        case serverId = "ServerId"
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decode(String.self, forKey: .id)
+        self.name = try container.decode(String.self, forKey: .name)
+        self.primaryImageTag = try container.decodeIfPresent(String.self, forKey: .primaryImageTag)
+        self.serverId = try container.decodeIfPresent(String.self, forKey: .serverId)
     }
 }
 
@@ -547,27 +621,6 @@ public struct PaginatedResult<T: Sendable>: Sendable {
     public let startIndex: Int
 
     public var hasMore: Bool { startIndex + items.count < totalCount }
-}
-
-// MARK: - JSONKeyDecodingStrategy helpers
-
-private extension JSONDecoder.KeyDecodingStrategy {
-    /// Converts PascalCase JSON keys ("ItemId") to camelCase Swift properties ("itemId").
-    static var convertFromPascalCase: JSONDecoder.KeyDecodingStrategy {
-        .custom { codingKeys in
-            guard let key = codingKeys.last else {
-                fatalError("CodingKey path is unexpectedly empty")
-            }
-            let str = key.stringValue
-            let first = str.prefix(1).lowercased()
-            let rest = str.dropFirst()
-            let camel = first + rest
-            guard let result = AnyCodingKey(stringValue: camel) else {
-                fatalError("AnyCodingKey init failed for string: \(camel)")
-            }
-            return result
-        }
-    }
 }
 
 private extension JSONEncoder.KeyEncodingStrategy {

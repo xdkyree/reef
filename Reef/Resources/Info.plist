@@ -25,11 +25,24 @@
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<!-- Allow local Jellyfin servers on HTTP; HTTPS is strongly preferred. -->
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
 		<key>NSAllowsLocalNetworking</key>
 		<true/>
 		<key>NSExceptionDomains</key>
 		<dict>
-			<!-- Override per-domain for any specific HTTP-only server if needed. -->
+			<key>jellyfin.lan</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
+			<key>localhost</key>
+			<dict>
+				<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
 		</dict>
 	</dict>
 	<key>UILaunchStoryboardName</key>

@@ -34,13 +34,11 @@ struct PlayerControlsView: View {
             // Bottom bar — seek + play/pause
             VStack(spacing: Spacing.md) {
                 // Seek bar
-                Slider(
-                    value: Binding(
-                        get: { viewModel.currentTime },
-                        set: { time in Task { await viewModel.seek(to: time) } }
-                    ),
-                    in: 0...max(viewModel.duration, 1)
+                ProgressView(
+                    value: min(viewModel.currentTime, max(viewModel.duration, 1)),
+                    total: max(viewModel.duration, 1)
                 )
+                .progressViewStyle(.linear)
                 .tint(Color.reefAccent)
                 .padding(.horizontal, Spacing.sectionPadding)
 

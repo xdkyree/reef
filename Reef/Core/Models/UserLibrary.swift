@@ -30,7 +30,7 @@ public struct UserLibrary: Identifiable, Sendable {
         self.id = mediaItem.id
         self.name = mediaItem.name
         self.primaryImageTag = mediaItem.primaryImageTag
-        self.collectionType = .unknown // CollectionType field not on MediaItem; resolved separately.
+        self.collectionType = mediaItem.collectionType ?? .unknown
     }
 }
 
@@ -51,5 +51,18 @@ public enum LibraryType: String, Codable, Sendable {
         let container = try decoder.singleValueContainer()
         let raw = try container.decode(String.self)
         self = Self(rawValue: raw) ?? .unknown
+    }
+
+    public var topLevelIncludeItemTypes: String {
+        switch self {
+        case .movies:
+            return "Movie"
+        case .tvshows:
+            return "Series"
+        case .mixed, .unknown, .homevideos:
+            return "Movie,Series"
+        default:
+            return "Movie,Series"
+        }
     }
 }

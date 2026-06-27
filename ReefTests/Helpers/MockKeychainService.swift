@@ -117,6 +117,7 @@ actor MockJellyfinAPIClient: JellyfinAPIClientProtocol {
     func fetchLibraryItems(
         userID: String,
         parentID: String,
+        libraryType: LibraryType,
         token: String,
         startIndex: Int,
         limit: Int

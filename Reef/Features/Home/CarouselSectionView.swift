@@ -23,11 +23,15 @@ struct CarouselSectionView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack(spacing: Spacing.cardSpacing) {
                     ForEach(items) { item in
-                        MediaCardView(
-                            item: item,
-                            serverURL: serverURL,
-                            onTap: { onSelectItem(item) }
-                        )
+                        Button {
+                            onSelectItem(item)
+                        } label: {
+                            MediaCardView(
+                                item: item,
+                                serverURL: serverURL
+                            )
+                        }
+                        .buttonStyle(.plain)
                     }
                 }
                 .padding(.horizontal, Spacing.sectionPadding)

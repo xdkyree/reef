@@ -165,8 +165,23 @@ final class JellyfinAPIClientTests: XCTestCase {
     // MARK: - JSON Decoder Tests
 
     func test_jellyfinDecoder_parsesISO8601WithMilliseconds() throws {
-        let json = """{"Id":"1","Name":"Test","Type":"Movie","ServerId":"s1","UserData":{"PlaybackPositionTicks":0,"Played":false,"PlayCount":0}}"""
-        let item = try JSONDecoder.jellyfinDecoder.decode(MediaItem.self, from: Data(json.utf8))
+        let json = """
+        {
+          "Id": "1",
+          "Name": "Test",
+          "Type": "Movie",
+          "ServerId": "s1",
+          "UserData": {
+            "PlaybackPositionTicks": 0,
+            "Played": false,
+            "PlayCount": 0
+          }
+        }
+        """
+        let item = try JSONDecoder.jellyfinDecoder.decode(
+            MediaItem.self,
+            from: Data(json.utf8)
+        )
         XCTAssertEqual(item.id, "1")
     }
 

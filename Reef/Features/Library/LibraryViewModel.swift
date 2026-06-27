@@ -18,11 +18,13 @@ final class LibraryViewModel: ObservableObject {
     // MARK: Dependencies
     private let api: JellyfinAPIClientProtocol
     private let libraryID: String
+    private let libraryType: LibraryType
 
     // MARK: Init
-    init(api: JellyfinAPIClientProtocol, libraryID: String) {
+    init(api: JellyfinAPIClientProtocol, libraryID: String, libraryType: LibraryType) {
         self.api = api
         self.libraryID = libraryID
+        self.libraryType = libraryType
     }
 
     // MARK: - Load
@@ -37,6 +39,7 @@ final class LibraryViewModel: ObservableObject {
             let result = try await api.fetchLibraryItems(
                 userID: userID,
                 parentID: libraryID,
+                libraryType: libraryType,
                 token: token,
                 startIndex: 0,
                 limit: pageSize
@@ -64,11 +67,14 @@ final class LibraryViewModel: ObservableObject {
             let result = try await api.fetchLibraryItems(
                 userID: userID,
                 parentID: libraryID,
+                libraryType: libraryType,
                 token: token,
                 startIndex: items.count,
                 limit: pageSize
             )
-            items.append(contentsOf: result.items)
+            let existingIDs = Set(items.map(\.id))
+            let newItems = result.items.filter { !existingIDs.contains($0.id) }
+            items.append(contentsOf: newItems)
         } catch {
             self.error = error
         }

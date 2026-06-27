@@ -54,7 +54,11 @@ final class DetailViewModel: ObservableObject {
                 token: token,
                 deviceProfile: .reef
             )
-            shouldStartPlayer = true
+            if playbackInfo?.preferredSource != nil {
+                shouldStartPlayer = true
+            } else {
+                error = NetworkError.unknown("Playback Unavailable")
+            }
         } catch {
             self.error = error
         }

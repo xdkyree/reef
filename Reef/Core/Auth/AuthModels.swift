@@ -20,6 +20,17 @@ public struct AuthResponse: Decodable, Sendable {
         case user          = "User"
         case sessionInfo   = "SessionInfo"
     }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.accessToken = try container.decode(String.self, forKey: .accessToken)
+        self.user = try container.decode(JellyfinUser.self, forKey: .user)
+        self.sessionInfo = try container.decodeIfPresent(SessionInfo.self, forKey: .sessionInfo)
+        self.serverId = try container.decodeIfPresent(String.self, forKey: .serverId)
+            ?? user.serverId
+            ?? sessionInfo?.serverId
+            ?? ""
+    }
 }
 
 // MARK: SessionInfo
@@ -27,10 +38,19 @@ public struct AuthResponse: Decodable, Sendable {
 public struct SessionInfo: Decodable, Sendable {
     public let id: String?
     public let deviceId: String?
+    public let serverId: String?
 
     enum CodingKeys: String, CodingKey {
         case id       = "Id"
         case deviceId = "DeviceId"
+        case serverId = "ServerId"
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decodeIfPresent(String.self, forKey: .id)
+        self.deviceId = try container.decodeIfPresent(String.self, forKey: .deviceId)
+        self.serverId = try container.decodeIfPresent(String.self, forKey: .serverId)
     }
 }
 

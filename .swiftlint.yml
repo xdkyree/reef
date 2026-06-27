@@ -58,7 +58,6 @@ opt_in_rules:
   - implicitly_unwrapped_optional
   - closure_spacing
   - collection_alignment
-  - conditional_returns_on_newline
   - contains_over_filter_count
   - contains_over_filter_is_empty
   - contains_over_first_not_nil
@@ -101,6 +100,13 @@ opt_in_rules:
 disabled_rules:
   - todo                     # tracked via expiring_todo instead
   - trailing_whitespace      # editor handles this
+  - conditional_returns_on_newline
+  - multiple_closures_with_trailing_closure
+  - function_parameter_count
+  - file_length
+  - type_body_length
+  - large_tuple
+  - static_over_final_class
 
 # ── Opt-in rule configuration ────────────────────────────────
 force_unwrapping:

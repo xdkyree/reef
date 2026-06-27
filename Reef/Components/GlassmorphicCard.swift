@@ -18,6 +18,16 @@ struct GlassmorphicCard<Content: View>: View {
     var cornerRadius: CGFloat = Spacing.cardCornerRadius
     var padding: CGFloat = Spacing.cardPadding
 
+    init(
+        cornerRadius: CGFloat = Spacing.cardCornerRadius,
+        padding: CGFloat = Spacing.cardPadding,
+        @ViewBuilder content: @escaping () -> Content
+    ) {
+        self.content = content
+        self.cornerRadius = cornerRadius
+        self.padding = padding
+    }
+
     var body: some View {
         content()
             .padding(padding)

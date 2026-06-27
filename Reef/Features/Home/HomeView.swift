@@ -1,39 +1,52 @@
 import SwiftUI
 
-// MARK: - HomeView
-//
-// Dashboard with four horizontal carousels:
-// "Continue Watching", "Next Up", "Recently Added Movies", "Recently Added Shows".
-
 struct HomeView: View {
-
     @EnvironmentObject private var appState: AppState
     @StateObject private var viewModel: HomeViewModel
-
-    @State private var selectedItem: MediaItem?
 
     init(api: JellyfinAPIClientProtocol) {
         _viewModel = StateObject(wrappedValue: HomeViewModel(api: api))
     }
 
-    // MARK: - Body
-
     var body: some View {
-        ZStack(alignment: .top) {
-            Color.reefBackground.ignoresSafeArea()
-
-            if viewModel.isLoading && viewModel.continueWatching.isEmpty {
-                loadingView
+        Group {
+            if viewModel.isLoading && viewModel.sections.isEmpty {
+                ProgressView("Loading Home")
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+            } else if let error = viewModel.error, viewModel.sections.isEmpty {
+                errorState(error)
             } else {
-                contentView
+                ScrollView {
+                    LazyVStack(alignment: .leading, spacing: 32) {
+                        header
+                        ForEach(viewModel.sections) { section in
+                            VStack(alignment: .leading, spacing: 12) {
+                                Text(section.title)
+                                    .font(.title3.weight(.semibold))
+
+                                ScrollView(.horizontal) {
+                                    LazyHStack(spacing: 20) {
+                                        ForEach(section.items) { item in
+                                            NavigationLink {
+                                                DetailView(item: item, api: appState.apiClient)
+                                            } label: {
+                                                MediaCardView(
+                                                    item: item,
+                                                    serverURL: appState.currentSession?.serverURL
+                                                )
+                                            }
+                                            .buttonStyle(.card)
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .padding(40)
+                }
             }
         }
-        .sheet(item: $selectedItem) { item in
-            if let session = appState.currentSession {
-                DetailView(item: item, api: appState.apiClient)
-                    .environmentObject(appState)
-            }
-        }
+        .navigationTitle("Home")
         .task {
             guard let session = appState.currentSession else {
                 return
@@ -42,120 +55,54 @@ struct HomeView: View {
         }
     }
 
-    // MARK: - Content
-
-    private var contentView: some View {
-        ScrollView(.vertical, showsIndicators: false) {
-            LazyVStack(alignment: .leading, spacing: Spacing.carouselRowGap) {
-                headerView
-                    .padding(.horizontal, Spacing.sectionPadding)
-                    .padding(.top, Spacing.xxl)
-
-                if !viewModel.continueWatching.isEmpty {
-                    carousel("Continue Watching", items: viewModel.continueWatching)
-                }
-                if !viewModel.nextUp.isEmpty {
-                    carousel("Next Up", items: viewModel.nextUp)
-                }
-                if !viewModel.recentlyAddedMovies.isEmpty {
-                    carousel("Recently Added Movies", items: viewModel.recentlyAddedMovies)
-                }
-                if !viewModel.recentlyAddedShows.isEmpty {
-                    carousel("Recently Added Shows", items: viewModel.recentlyAddedShows)
-                }
-
-                if let error = viewModel.error {
-                    errorView(error)
-                        .padding(.horizontal, Spacing.sectionPadding)
-                }
-            }
-            .padding(.bottom, Spacing.xxl)
+    private var header: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("Good \(timeOfDayGreeting())")
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+            Text(appState.currentSession?.userName ?? "Reef")
+                .font(.largeTitle.bold())
         }
     }
 
-    @ViewBuilder
-    private func carousel(_ title: String, items: [MediaItem]) -> some View {
-        CarouselSectionView(
-            title: title,
-            items: items,
-            serverURL: appState.currentSession?.serverURL ?? URL(string: "http://localhost")!,
-            onSelectItem: { selectedItem = $0 }
-        )
-    }
+    private func errorState(_ error: Error) -> some View {
+        VStack(spacing: 24) {
+            Text("Could not load your library.")
+                .font(.title2.weight(.semibold))
+            Text(error.localizedDescription)
+                .foregroundStyle(.secondary)
+                .multilineTextAlignment(.center)
 
-    // MARK: - Header
+            HStack(spacing: 20) {
+                Button("Retry") {
+                    Task {
+                        guard let session = appState.currentSession else {
+                            return
+                        }
+                        await viewModel.refresh(userID: session.userID, token: session.accessToken)
+                    }
+                }
 
-    private var headerView: some View {
-        HStack {
-            VStack(alignment: .leading, spacing: Spacing.xs) {
-                Text("Good \(timeOfDayGreeting())")
-                    .font(.reefCaption)
-                    .foregroundStyle(Color.reefLabelSecondary)
-                Text(appState.currentSession?.userName ?? "Reef")
-                    .font(.reefTitle)
-                    .foregroundStyle(Color.reefLabel)
+                Button("Sign Out", role: .destructive) {
+                    Task {
+                        await appState.clearSession()
+                    }
+                }
             }
-            Spacer()
-            Text("reef")
-                .font(.reefTitleSecondary)
-                .italic()
-                .foregroundStyle(Color.reefAccent)
-        }
-    }
-
-    // MARK: - Loading
-
-    private var loadingView: some View {
-        VStack(spacing: Spacing.lg) {
-            ProgressView()
-                .tint(Color.reefAccent)
-                .scaleEffect(1.5)
-            Text("Loading your library…")
-                .font(.reefSubtitle)
-                .foregroundStyle(Color.reefLabelSecondary)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .padding(40)
     }
-
-    // MARK: - Error
-
-    private func errorView(_ error: Error) -> some View {
-        GlassmorphicCard {
-            VStack(spacing: Spacing.sm) {
-                Image(systemName: "exclamationmark.triangle.fill")
-                    .font(.system(size: 40))
-                    .foregroundStyle(Color.reefWarning)
-                Text(error.localizedDescription)
-                    .font(.reefBody)
-                    .foregroundStyle(Color.reefLabel)
-                    .multilineTextAlignment(.center)
-                FocusScaleButton(
-                    action: {
-                        Task {
-                            guard let session = appState.currentSession else {
-                                return
-                            }
-                            await viewModel.refresh(userID: session.userID, token: session.accessToken)
-                        }
-                    },
-                    label: {
-                        Text("Retry")
-                            .font(.reefBodyEmphasized)
-                            .foregroundStyle(Color.reefOnAccent)
-                    }
-                )
-            }
-        }
-    }
-
-    // MARK: - Helpers
 
     private func timeOfDayGreeting() -> String {
         let hour = Calendar.current.component(.hour, from: Date())
         switch hour {
-        case 0..<12: return "morning"
-        case 12..<17: return "afternoon"
-        default: return "evening"
+        case 0..<12:
+            return "morning"
+        case 12..<17:
+            return "afternoon"
+        default:
+            return "evening"
         }
     }
 }

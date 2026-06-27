@@ -14,20 +14,39 @@ final class OnboardingViewModel: ObservableObject {
     @Published private(set) var didConnect = false
 
     // MARK: Dependencies
-    private let authService: AuthenticationService
+    private let connectAction: @Sendable (URL, String, String) async throws -> UserSession
     private let onSuccess: (UserSession) -> Void
 
     // MARK: Init
-    init(authService: AuthenticationService, onSuccess: @escaping (UserSession) -> Void) {
-        self.authService = authService
+    init(
+        connectAction: @escaping @Sendable (URL, String, String) async throws -> UserSession,
+        onSuccess: @escaping (UserSession) -> Void
+    ) {
+        self.connectAction = connectAction
         self.onSuccess = onSuccess
+    }
+
+    convenience init(
+        authService: any AuthenticationServiceProtocol,
+        onSuccess: @escaping (UserSession) -> Void
+    ) {
+        self.init(
+            connectAction: { serverURL, username, password in
+                try await authService.login(
+                    serverURL: serverURL,
+                    username: username,
+                    password: password
+                )
+            },
+            onSuccess: onSuccess
+        )
     }
 
     // MARK: - Validation
 
     var isInputValid: Bool {
-        !serverURLText.trimmingCharacters(in: .whitespaces).isEmpty &&
-        !username.trimmingCharacters(in: .whitespaces).isEmpty &&
+        !serverURLText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty &&
+        !username.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty &&
         !password.isEmpty
     }
 
@@ -40,9 +59,12 @@ final class OnboardingViewModel: ObservableObject {
         }
 
         // Normalise URL — prepend https if no scheme given.
-        var urlString = serverURLText.trimmingCharacters(in: .whitespaces)
+        var urlString = serverURLText.trimmingCharacters(in: .whitespacesAndNewlines)
         if !urlString.hasPrefix("http://") && !urlString.hasPrefix("https://") {
             urlString = "http://\(urlString)"
+        }
+        while urlString.hasSuffix("/") {
+            urlString.removeLast()
         }
 
         guard let url = URL(string: urlString) else {
@@ -55,16 +77,21 @@ final class OnboardingViewModel: ObservableObject {
         defer { isConnecting = false }
 
         do {
-            let session = try await authService.login(
-                serverURL: url,
-                username: username,
-                password: password
+            let session = try await connectAction(
+                url,
+                username.trimmingCharacters(in: .whitespacesAndNewlines),
+                password
             )
+            didConnect = true
             onSuccess(session)
         } catch let error as AuthenticationError {
             errorMessage = error.errorDescription
         } catch {
             errorMessage = error.localizedDescription
         }
+    }
+
+    func dismissError() {
+        errorMessage = nil
     }
 }
