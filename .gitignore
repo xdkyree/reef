@@ -53,3 +53,4 @@ AuthKey_*.p8
 # Instruments / profiling artefacts
 # ────────────────────────────────────────────────────────────
 *.trace
+.worktrees/
